@@ -11,24 +11,26 @@
 <div class="container col-lg-10">
     <form method="post" class="form-inline float-right">
         {% csrf_token %}
-        <input name="city" value="{{ request.POST.city }}" class="form-control" type="text" placeholder="Type here...">
+        <input name="city" value="{{ request.POST.city }}" class="form-control mr-lg-3" type="text" placeholder="Type here...">
         <button type="submit" class="btn btn-success">Search</button>
     </form>
     <br><br>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Code</th>
+            <th>Country Name</th>
+            <th>Country Code</th>
             <th>Coordinate</th>
             <th>Temperature</th>
         </tr>
         </thead>
-        <tbody>
-        {% if country_code and coordinate and temperature %}
+        <tbody class="align-items-center">
+        {% if country_code and coord_lon and coord_lat and temperature %}
             <tr>
-                <td>Country Code: {{ country_code }}</td>
-                <td>Coordinate: {{ coordinate }}</td>
-                <td>Temperature: {{ temperature }}</td>
+                <td>{{ country_name }}</td>
+                <td>{{ country_code }}</td>
+                <td>{{ coord_lon }} <br> {{ coord_lat }}</td>
+                <td>{{ temperature }}</td>
             </tr>
         {% endif %}
 
