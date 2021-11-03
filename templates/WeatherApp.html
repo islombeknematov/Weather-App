@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+</head>
+<body>
+<br><br><br>
+<div class="container col-lg-10">
+    <form method="post" class="form-inline float-right">
+        {% csrf_token %}
+        <input name="city" value="{{ request.POST.city }}" class="form-control" type="text" placeholder="Type here...">
+        <button type="submit" class="btn btn-success">Search</button>
+    </form>
+    <br><br>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Code</th>
+            <th>Coordinate</th>
+            <th>Temperature</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if country_code and coordinate and temperature %}
+            <tr>
+                <td>Country Code: {{ country_code }}</td>
+                <td>Coordinate: {{ coordinate }}</td>
+                <td>Temperature: {{ temperature }}</td>
+            </tr>
+        {% endif %}
+
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>
