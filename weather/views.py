@@ -3,17 +3,15 @@ import urllib.request
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
-
 import json
 
 
 def get_weather(request):
     if request.method == 'POST':
-        city = request.POST['city']
-
+        city1 = request.POST['city']
+        city2 = city1.replace(" ", "%20")
         source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=' +
-                                        city + '&units=metric&appid=742370029c8ae0a47ccf91b8a42156fd').read()
+                                        city2 + '&units=metric&appid=742370029c8ae0a47ccf91b8a42156fd').read()
 
         list_data = json.loads(source)
         # print(list_data)
